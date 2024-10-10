@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class Homework18Test extends BaseTest {
     @Test
-    public void playSong() throws InterruptedException {
+    public void playSong()  {
         navigateToPage();
         provideEmail("bohdan.ivasiv@testpro.io");
         providePassword("TkSDMvReT57X$ym");
@@ -16,10 +16,11 @@ public class Homework18Test extends BaseTest {
         Assert.assertTrue(driver.findElement(By.cssSelector("span.pause")).isDisplayed());
 
     }
-    public void playNextSongBtn() throws InterruptedException {
-        WebElement nextSong = driver.findElement((By.cssSelector("i.next")));
+    public void playNextSongBtn()  {
+        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        actions.moveToElement(play).perform();
+        WebElement nextSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("i.next")));
         nextSong.click();
-        Thread.sleep(2000);
         WebElement playBtn = wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("span.play"))));
         playBtn.click();
 
