@@ -1,11 +1,12 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework19Test extends BaseTest {
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist()  {
         String expectedDeletedPlaylistMessage = "Deleted playlist \"Playlist1.\"";
         provideEmail("bohdan.ivasiv@testpro.io");
         providePassword("TkSDMvReT57X$ym");
@@ -13,15 +14,14 @@ public class Homework19Test extends BaseTest {
         findPlaylist();
         Assert.assertEquals(getDeletedPlaylistMsg(), expectedDeletedPlaylistMessage);
     }
-    public void findPlaylist() throws InterruptedException {
-        WebElement playlistName = driver.findElement(By.xpath("//section[@id = 'playlists'] //a[contains(text(), 'Playlist1')]"));
+    public void findPlaylist() {
+        WebElement playlistName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id = 'playlists'] //a[contains(text(), 'Playlist1')]")));
         playlistName.click();
-        WebElement deletePlaylistBtn = driver.findElement(By.cssSelector("button.del"));
+        WebElement deletePlaylistBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.del")));
         deletePlaylistBtn.click();
-        Thread.sleep(2000);
     }
     public String getDeletedPlaylistMsg(){
-        WebElement deleteMsg = driver.findElement(By.cssSelector("div.success.show"));
+        WebElement deleteMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return deleteMsg.getText();
     }
 }
