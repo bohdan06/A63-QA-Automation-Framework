@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class Homework16Test extends BaseTest {
     @Test
-    public void registrationNavigation() {
+    public void registrationNavigation(){
         navigateToPage();
         WebElement registrationButton = wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("a[href='registration']"))));
         registrationButton.click();

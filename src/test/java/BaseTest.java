@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,10 +16,10 @@ import org.testng.annotations.Parameters;
 import java.time.Duration;
 
 public class BaseTest {
-    public WebDriver driver = null;
-    public String url = null;
-    public WebDriverWait wait = null;
-    public Actions actions = null;
+    public static WebDriver driver = null;
+    public static String url = null;
+    public static WebDriverWait wait = null;
+    public static Actions actions = null;
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -60,7 +61,71 @@ public class BaseTest {
         WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submit.click();
     }
+    public void searchSong(String songName)  {
+        WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("input[type='search']"))));
+        searchField.sendKeys(songName);
+
+    }
+    public void clickViewAllBtn()  {
+        WebElement viewAllBtn = wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("button[data-test='view-all-songs-btn']"))));
+        viewAllBtn.click();
+    }
+    public void selectSong()  {
+        WebElement firstSong = wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//section[@id='songResultsWrapper'] //tr[@class='song-item'][1]"))));
+        firstSong.click();
+    }
+    public void clickAddToButton() {
+        WebElement addToButton = wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("button.btn-add-to"))));
+        addToButton.click();
+
+    }
+    public void choosePlaylist()  {
+        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Playlist1')]"))));
+        playlist.click();
+
+    }
+    public String getAddToPlaylistSuccessMsg() {
+        WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
+        return notification.getText();
+    }
+    public void playNextSongBtn()  {
+        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        actions.moveToElement(play).perform();
+        WebElement nextSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("i.next")));
+        nextSong.click();
+        WebElement playBtn = wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("span.play"))));
+        playBtn.click();
+
+    }
+    public void findPlaylist() {
+        WebElement playlistName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id = 'playlists'] //a[contains(text(), 'Playlist1')]")));
+        playlistName.click();
+    }
+    public void deletePlaylistBtn() {
+        WebElement delete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.del")));
+        delete.click();
+    }
+    public String getDeletedPlaylistMsg(){
+        WebElement deleteMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return deleteMsg.getText();
+    }
+    public void doubleClickOnPlaylist() {
+        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists'] //a[contains(text(), 'PlaylistTest')]")));
+        actions.doubleClick(playlist).perform();
+
+    }
+    public void newNameForPlaylist (){
+        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        playlistInputField.sendKeys("Changed Playlist");
+        playlistInputField.sendKeys(Keys.ENTER);
 
 
+    }
+    public String getRenamePlaylistSuccessMsg() {
+        WebElement renameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return renameMsg.getText();
+
+    }
 
 }
