@@ -110,22 +110,21 @@ public class BaseTest {
         return deleteMsg.getText();
     }
     public void doubleClickOnPlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists'] //a[contains(text(), 'PlaylistTest')]")));
+        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         actions.doubleClick(playlist).perform();
 
     }
     public void newNameForPlaylist (){
         WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
-        playlistInputField.sendKeys("Changed Playlist");
+        playlistInputField.sendKeys("Playlist Test Changed3");
         playlistInputField.sendKeys(Keys.ENTER);
 
 
     }
-    public String getRenamePlaylistSuccessMsg() {
-        WebElement renameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return renameMsg.getText();
-
+    public String getRenamePlaylistSuccessMsg (){
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return notification.getText();
     }
 
 }

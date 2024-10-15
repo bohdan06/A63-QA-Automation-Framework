@@ -10,7 +10,7 @@ public class HomePage extends BasePage {
             super(givenDriver);
         }
         By userAvatarIcon = By.cssSelector("img.avatar");
-        By playlist = By.xpath("//section[@id='playlists'] //a[contains(text(), 'PlaylistTest')]");
+        By playlist = By.cssSelector(".playlist:nth-child(3)");
         By playlistInputField = By.cssSelector("[name='name']");
         By renameMsg = By.cssSelector("div.success.show");
     public WebElement getAvatarIcon(){
