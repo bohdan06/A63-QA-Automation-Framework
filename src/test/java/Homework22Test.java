@@ -3,7 +3,7 @@ import POM.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 public class Homework22Test extends BaseTest {
-    
+
     @Test
     public void renamePlaylistName() {
         String newPlaylistName = "Playlist Test Changed4";
