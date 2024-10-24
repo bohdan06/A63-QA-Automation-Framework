@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework21Test extends BaseTest {
-
+    String newPlaylistName = "Playlist Test Changed3";
     @Test
     public void renamePlaylist(){
         String updatedPlaylistName = "Updated playlist \"Playlist Test Changed3.\"";
@@ -12,7 +12,7 @@ public class Homework21Test extends BaseTest {
         providePassword("TkSDMvReT57X$ym");
         submitBtn();
         doubleClickOnPlaylist();
-        newNameForPlaylist();
+        newNameForPlaylist(newPlaylistName);
         Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatedPlaylistName);
     }
 

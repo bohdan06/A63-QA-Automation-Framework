@@ -16,7 +16,7 @@ public class HomePage extends BasePage {
     public WebElement getAvatarIcon(){
         return findElement(userAvatarIcon);
     }
-    public void doubleClickOnPlaylist (){
+    public void doubleClickPlaylist (){
         doubleClick(playlist);
     }
     public void enterNewNameForPlaylist(String playlistName){

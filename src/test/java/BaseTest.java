@@ -104,6 +104,7 @@ public class BaseTest {
     public void deletePlaylistBtn() {
         WebElement delete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.del")));
         delete.click();
+        delete.sendKeys(Keys.ENTER);
     }
     public String getDeletedPlaylistMsg(){
         WebElement deleteMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
@@ -114,10 +115,10 @@ public class BaseTest {
         actions.doubleClick(playlist).perform();
 
     }
-    public void newNameForPlaylist (){
+    public void newNameForPlaylist (String name){
         WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
-        playlistInputField.sendKeys("Playlist Test Changed3");
+        playlistInputField.sendKeys(name);
         playlistInputField.sendKeys(Keys.ENTER);
 
 
