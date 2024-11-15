@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Smoke" parallel="methods" thread-count="2">
+    <parameter name="BaseURL" value="https://qa.koel.app/"/>
+    <test name="Smoke" preserve-order="false">
+        <classes>
+            <class name="LoginTests">
+                <methods>
+                    <include name="loginValidEmailPassword"> </include>
+                </methods>
+            </class>
+            <class name="PlaylistTests">
+                <methods>
+                    <include name="createPlaylist"> </include>
+                </methods>
+            </class>
+            <class name="SongTests">
+                <methods>
+                    <include name="addSongToPlaylist"> </include>
+                    <include name="playSong"> </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
