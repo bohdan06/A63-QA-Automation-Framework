@@ -15,7 +15,7 @@ public class HomePage extends BasePage {
     WebElement newNameForPlaylist;
     @FindBy(css = "div.success.show")
     WebElement createdPlaylistMsg;
-    @FindBy (xpath = "//section[@id = 'playlists'] //a[contains(text(), 'Playlist1')]")
+    @FindBy (xpath = "//section[@id = 'playlists'] //a[contains(text(), 'Relax mix')]")
     WebElement playlistName;
     @FindBy(css = "div.success.show")
     WebElement deleteMsg;
@@ -33,7 +33,8 @@ public class HomePage extends BasePage {
     WebElement viewAllBtn;
     @FindBy(css = "form.create input[name='name']")
     public WebElement nameField;
-
+    @FindBy (css = "a.songs")
+    WebElement allSongs;
 
 
     public HomePage(WebDriver givenDriver) {
@@ -103,6 +104,10 @@ public class HomePage extends BasePage {
     }
     public HomePage playButton(){
         playBtn.click();
+        return this;
+    }
+    public HomePage allSongsSection(){
+        wait.until(ExpectedConditions.elementToBeClickable(allSongs)).click();
         return this;
     }
 

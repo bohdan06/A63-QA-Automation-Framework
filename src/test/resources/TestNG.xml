@@ -8,6 +8,7 @@
             <class name="LoginTests"/>
             <class name="PlaylistTests"/>
             <class name="AccountCreationTests"/>
+            <class name="SongTests"/>
 
 
         </classes>
