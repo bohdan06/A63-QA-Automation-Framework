@@ -27,7 +27,7 @@ public class SongTests extends BaseTest {
         AllSongsPage allSongsPage = new AllSongsPage(getDriver());
         loginPage.provideEmail("bohdan.ivasiv@testpro.io").providePassword("TkSDMvReT57X$ym").submitBtn();
         homePage.allSongsSection();
-        allSongsPage.selectM33Song().selectM33Song().addSongToPlaylist();
+        allSongsPage.selectM33Song().addSongToPlaylist();
         Assert.assertEquals(allSongsPage.getAddedMsg(), expectedAddedMsg);
 
 
