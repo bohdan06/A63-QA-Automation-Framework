@@ -1,4 +1,5 @@
 package pagefactory;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +12,7 @@ public class SearchPage extends BasePage {
     WebElement firstSong;
     @FindBy (css = "button.btn-add-to")
     WebElement addToButton;
-    @FindBy (xpath = "//section[@id='songResultsWrapper']//li[contains(text(),'Playlist1')]")
+    @FindBy (xpath = "//section[@id='songResultsWrapper']//li[contains(text(),'Relax mix')]")
     WebElement playlist;
     @FindBy (css = "div.success.show")
     WebElement notification;
@@ -31,6 +32,7 @@ public class SearchPage extends BasePage {
         return this;
     }
     public SearchPage choosePlaylist(){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", playlist);
         wait.until(ExpectedConditions.elementToBeClickable(playlist)).click();
         return this;
     }

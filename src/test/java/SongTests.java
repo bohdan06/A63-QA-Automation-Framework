@@ -9,7 +9,7 @@ import pagefactory.SearchPage;
 public class SongTests extends BaseTest {
     @Test
     public  void addSongToPlaylist()  {
-        String expectedSongAddedMessage = "Added 1 song into \"Playlist1.\"";
+        String expectedSongAddedMessage = "Added 1 song into \"Relax mix.\"";
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         SearchPage searchPage = new SearchPage(getDriver());
